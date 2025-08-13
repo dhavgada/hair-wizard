@@ -1,32 +1,30 @@
-type="text/babel" data-presets="react">
-<!-- React + ReactDOM + Babel (one-time) -->
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+// Corrected version of the code (removed syntax errors and improved React use)
 
-<!-- Site-wide defaults — safe to tweak -->
-<script>
-  window.__HAIR_WIZ_DEFAULTS__ = {
-    title: "Assure Hair Intake",
-    accentColor: "#5b9cff",
-    shortMode: true,
-    showJson: false,
-    onSubmit: function({ form, result }) {
-      alert("Thanks! We’ve received your details.");
-      console.log("Submission payload", { form, result });
-      return Promise.resolve();
-    }
-  };
-</script>
+// React + ReactDOM + Babel (one-time) - These should be included in the HTML, not in JSX
+// <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+// <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+// <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-<!-- The entire wizard, inline (no uploads needed) -->
-<script type="text/babel" data-presets="react">
+// Site-wide defaults — safe to tweak
+window.__HAIR_WIZ_DEFAULTS__ = {
+  title: "Assure Hair Intake",
+  accentColor: "#5b9cff",
+  shortMode: true,
+  showJson: false,
+  onSubmit: function({ form, result }) {
+    alert("Thanks! We’ve received your details.");
+    console.log("Submission payload", { form, result });
+    return Promise.resolve();
+  }
+};
+
+// The entire wizard, inline (no uploads needed)
 /** Hair Wizard (inline JSX) */
 const CSS = `
 :root{--bg:#0b0c10;--card:#111217;--muted:#8f95a3;--text:#e6e8ee;--accent:#5b9cff;--ok:#27ae60;--warn:#f39c12;--bad:#e74c3c}
 *{box-sizing:border-box}html,body{margin:0;padding:0}
 .hz-wrap{max-width:980px;margin:24px auto;padding:16px}
-.hz-card{background:var(--card);border-radius:18px;box-shadow:0 4px 24px rgba(0,0,0,.35);padding:20px;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,'Noto Sans',sans-serif}
+.hz-card{background:var(--card);border-radius:18px;box-shadow:0 4px 24px rgba(0,0,0,.35);padding:20px;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;font-size:16px}
 .hz-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .hz-title{font-size:22px;font-weight:700}
 .hz-muted{color:var(--muted)}
@@ -332,7 +330,7 @@ function HairAssessmentWizard({ title, accentColor, shortMode, showJson, onSubmi
           </div>
         )}
 
-        {steps[step] === "Scalp & Symptoms" and (
+        {steps[step] === "Scalp & Symptoms" && (
           <div>
             <SectionTitle title="Scalp & Symptoms" subtitle="What you feel on scalp" />
             <Row>
@@ -541,5 +539,3 @@ window.HairWizard.mount = function(selector, props){
   const merged = Object.assign({ title:"Hair Assessment & Segmentation", accentColor:"#5b9cff", shortMode:true, showJson:false }, defaults, props||{});
   root.render(<HairAssessmentWizard {...merged} />);
 };
-</script>
-
